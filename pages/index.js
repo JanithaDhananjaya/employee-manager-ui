@@ -112,10 +112,19 @@ const EMPLOYEE_DUMP = [
     }
 ];
 
-function HomePage() {
+function HomePage(props) {
     return (
-            <EmployeeList employees={EMPLOYEE_DUMP}/>
+            <EmployeeList employees={props.employees}/>
     );
+}
+
+export async function getStaticProps(){
+    return {
+        props: {
+            employees: EMPLOYEE_DUMP
+        },
+        revalidate: 1
+    }
 }
 
 export default HomePage;
