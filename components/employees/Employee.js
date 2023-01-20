@@ -1,48 +1,37 @@
 import {useRouter} from 'next/router';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import Card from 'react-bootstrap/Card';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import classes from './Employee.module.css';
+import Col from 'react-bootstrap/Col';
 
 function Employee(props) {
     const router = useRouter();
 
     function editEmployee() {
-        router.push('/' + props.emp.id);
+        router.push('/' + props.emp._id);
+    }
+
+    const deleteEmployee=(empId) =>{
+        console.log(empId)
+        props.removeEmployee(empId);
     }
 
     return (
-        <li className={classes.item}>
-            <Card sx={{maxWidth: 345}}>
-                <CardMedia
-                    sx={{height: 140}}
-                    image={props.emp.photo}
-                    title="green iguana"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {props.emp.first_name} - {props.emp.last_name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.emp.email}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.emp.number}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {props.emp.gender === 'M' ? 'Male' : 'FEMALE'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Delete</Button>
+        <Col>
+            <Card>
+                <Card.Img style={{width: '300px', height: '160px'}} variant="top" src={props.emp.photo}/>
+                <Card.Body>
+                    <Card.Title>{props.emp.first_name} {props.emp.last_name}</Card.Title>
+                    <Card.Text>
+
+                    </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                    <Button size="small" onClick={() => deleteEmployee(props.emp._id)}>Delete</Button>
                     <Button size="small" onClick={editEmployee}>Edit</Button>
-                </CardActions>
+                </Card.Footer>
             </Card>
-        </li>
+        </Col>
     );
 }
 

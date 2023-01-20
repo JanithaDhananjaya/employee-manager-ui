@@ -13,6 +13,7 @@
 }
 
 .control input,
+.control select,
 .control textarea {
     display: block;
     font: inherit;
