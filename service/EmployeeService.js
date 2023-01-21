@@ -4,7 +4,6 @@ const BASE_URL = 'http://localhost:3000';
 export const getEmployees = async () => {
     const response = await fetch(`${BASE_URL}/api/employee`);
     const json = await response.json();
-    console.log(json)
     return json;
 }
 
@@ -12,7 +11,6 @@ export const getEmployees = async () => {
 export const getEmployee = async (employeeId) => {
     const response = await fetch(`${BASE_URL}/api/employee/${employeeId}`);
     const json = await response.json();
-    console.log(json)
     return json;
 }
 

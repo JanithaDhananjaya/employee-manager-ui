@@ -5,9 +5,7 @@ import Employees from '../model/employee';
 // GET: http://localhost:3000/api/employee
 export async function getEmployees(req, res) {
     try {
-        console.log('ppppppppppppppppppp')
         const employees = await Employees.find({});
-        console.log(employees)
         if (!employees) return res.status(404).json({error: "Data not Found"});
         res.status(200).json(employees);
     } catch (error) {

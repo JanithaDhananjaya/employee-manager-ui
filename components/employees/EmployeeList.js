@@ -29,8 +29,7 @@ function EmployeeList(props) {
 
     const changeLayout = () => {
         setCardLayout(!cardLayout);
-    }
-
+    };
 
     return (
         <>
@@ -55,15 +54,15 @@ function EmployeeList(props) {
             }
             <Modal show={empId} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Confirmation</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>dd</Modal.Body>
+                <Modal.Body>Are you sure want to remove this employee?</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        No
                     </Button>
                     <Button variant="primary" onClick={deleteHandler}>
-                        Save Changes
+                        Yes, Confirm
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -16,7 +16,6 @@ function Employee(props) {
     }
 
     const deleteEmployee=(empId) =>{
-        console.log(empId)
         props.removeEmployee(empId);
     }
 

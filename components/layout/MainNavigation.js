@@ -9,10 +9,10 @@ function MainNavigation() {
             <nav>
                 <ul>
                     <li>
-                        <Link href='/'>All Employees</Link>
+                        <Link href='/employee/list'>All Employees</Link>
                     </li>
                     <li>
-                        <Link href='/employee'>Add New Employee</Link>
+                        <Link href='/employee/add'>Add New Employee</Link>
                     </li>
                 </ul>
             </nav>
