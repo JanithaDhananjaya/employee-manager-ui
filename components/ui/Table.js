@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import Table from 'react-bootstrap/Table';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -5,8 +6,9 @@ import {Button} from "react-bootstrap";
 import DeleteIcon from '@mui/icons-material/Delete';
 
 function EmployeeDataTable(props) {
-    function editEmployee() {
-        router.push('/' + props.emp._id);
+    const router = useRouter();
+    function editEmployee(empId) {
+        router.push('/' + empId);
     }
 
     const deleteEmployee=(empId) =>{
@@ -44,7 +46,7 @@ function EmployeeDataTable(props) {
                         <td>{row.number}</td>
                         <td>{row.gender}</td>
                         <td>
-                            <Button onClick={editEmployee}>Edit</Button>
+                            <Button onClick={()=>editEmployee(row._id)}>Edit</Button>
                             <DeleteIcon onClick={() => deleteEmployee(row._id)} color='error'/>
                         </td>
                     </tr>

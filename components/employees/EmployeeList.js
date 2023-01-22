@@ -1,3 +1,4 @@
+import {useRouter} from 'next/router';
 import Employee from "./Employee";
 import Row from 'react-bootstrap/Row';
 import {useState} from "react";
@@ -9,7 +10,7 @@ import ButtonMaterial from '@mui/material/Button';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import Stack from '@mui/material/Stack';
 import EmployeeDataTable from "@/components/ui/Table";
-import {useRouter} from 'next/router';
+
 
 function EmployeeList(props) {
     const [empId, setEmpId] = useState(null);
