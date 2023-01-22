@@ -1,21 +1,15 @@
-import Link from 'next/link';
+import {useRouter} from 'next/router';
 import classes from './MainNavigation.module.css';
 
 function MainNavigation() {
+    const router = useRouter();
+    const goHomePage = () => {
+        router.push('/employee/list');
+    }
 
     return (
         <header className={classes.header}>
-            <div className={classes.logo}>Employee Manager</div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href='/employee/list'>All Employees</Link>
-                    </li>
-                    <li>
-                        <Link href='/employee/add'>Add New Employee</Link>
-                    </li>
-                </ul>
-            </nav>
+            <div className={classes.logo} onClick={goHomePage}>Employee Manager</div>
         </header>
     );
 }

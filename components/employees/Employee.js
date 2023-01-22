@@ -7,6 +7,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Col from 'react-bootstrap/Col';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Employee(props) {
     const router = useRouter();
@@ -42,9 +44,9 @@ function Employee(props) {
                         {props.emp.gender ==="M" ? "Male" : props.emp.gender === "F" ? "Female" : "-"}
                     </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button size="small" onClick={() => deleteEmployee(props.emp._id)}>Delete</Button>
-                    <Button size="small" onClick={editEmployee}>Edit</Button>
+                <CardActions style={{float:'right'}}>
+                    <Button size="small" onClick={() => deleteEmployee(props.emp._id)}><DeleteIcon color='error' /></Button>
+                    <Button size="small" onClick={editEmployee}><EditIcon color='success'/></Button>
                 </CardActions>
             </Card>
         </Col>

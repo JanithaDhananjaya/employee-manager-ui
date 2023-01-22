@@ -6,18 +6,24 @@ import Button from "react-bootstrap/Button";
 import {deleteEmployee, getEmployee} from "@/service/EmployeeService";
 import {useQueryClient} from "react-query";
 import ButtonMaterial from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import Stack from '@mui/material/Stack';
 import EmployeeDataTable from "@/components/ui/Table";
+import {useRouter} from 'next/router';
 
 function EmployeeList(props) {
     const [empId, setEmpId] = useState(null);
     const [cardLayout, setCardLayout] = useState(true);
     const queryClient = useQueryClient();
+    const router = useRouter();
     const removeEmployee = (id) => {
         if (id) {
             setEmpId(id);
         }
+    };
+
+    const addEmployee = () => {
+       router.push('/employee/add');
     };
 
     const handleClose = () => setEmpId(null);
@@ -25,6 +31,7 @@ function EmployeeList(props) {
     const deleteHandler = async ()=> {
         await deleteEmployee(empId);
         await queryClient.prefetchQuery(('employees', getEmployee));
+        setCardLayout(!cardLayout);
     };
 
     const changeLayout = () => {
@@ -33,13 +40,13 @@ function EmployeeList(props) {
 
     return (
         <>
-            <Stack direction="row" alignItems="right" spacing={2}>
-                <ButtonMaterial variant="contained" component="label">
+            <Stack direction="row" alignItems="right" spacing={2} style={{float: 'right'}}>
+                <ButtonMaterial variant="contained" component="label" onClick={addEmployee}>
                     Add Employee
-                    <input hidden accept="image/*" multiple type="file"/>
                 </ButtonMaterial>
-                <ButtonMaterial variant="outlined" startIcon={<DeleteIcon/>} onClick={changeLayout}/>
+                <ButtonMaterial variant="outlined" startIcon={<FormatListBulletedIcon/>} onClick={changeLayout}/>
             </Stack>
+            <br/>
             <br/>
             {
                 cardLayout ? (
@@ -49,7 +56,7 @@ function EmployeeList(props) {
                         ))}
                     </Row>
                 ) : (
-                    <EmployeeDataTable data={props.employees}/>
+                    <EmployeeDataTable data={props.employees} removeEmployee={(id) => removeEmployee(id)}/>
                 )
             }
             <Modal show={empId} onHide={handleClose}>

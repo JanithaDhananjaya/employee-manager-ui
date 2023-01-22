@@ -1,8 +1,17 @@
 import Table from 'react-bootstrap/Table';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
+import {Button} from "react-bootstrap";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function EmployeeDataTable(props) {
+    function editEmployee() {
+        router.push('/' + props.emp._id);
+    }
+
+    const deleteEmployee=(empId) =>{
+        props.removeEmployee(empId);
+    }
     return (
         <Table bordered>
             <thead>
@@ -35,7 +44,8 @@ function EmployeeDataTable(props) {
                         <td>{row.number}</td>
                         <td>{row.gender}</td>
                         <td>
-
+                            <Button onClick={editEmployee}>Edit</Button>
+                            <DeleteIcon onClick={() => deleteEmployee(row._id)} color='error'/>
                         </td>
                     </tr>
                 ))
